@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>uploadQueue</title>
+    <link rel="stylesheet" href="static/css/queue.min.css">
+</head>
+<body>
+<form method="post" action="proofOfConcept.php" id="formId">
+    <input type="file" multiple name="demo">
+    <button type="submit">
+        Submit
+    </button>
+</form>
+<form method="post" action="proofOfConcept.php" id="formId2">
+    <input type="file" multiple name="demo">
+    <input type="hidden" multiple name="foo" value="bar">
+    <button type="submit">
+        Submit
+    </button>
+</form>
+<script src="static/js/uploadQueue.min.js"></script>
+<script>
+    // outside the framework
+    // create upload queue on all file inputs
+    var fileInputs = d.querySelectorAll('[type="file"]');
+    for (var a = 0; a < fileInputs.length; a++) {
+        fileInputs[a].uploadQue();
+    }
+    d.getElementById("formId").addEventListener('submit', getFormData)
+    d.getElementById("formId2").addEventListener('submit', getFormData)
+    function getFormData (e){
+        e.preventDefault();
+        // sets form as formData(form) to build form data from this form
+        var formData = this.getFormData(this);
+        var request = new XMLHttpRequest();
+        request.open(this.method, this.action);
+        request.send(formData);
+    }
+</script>
+</body>
+</html>
