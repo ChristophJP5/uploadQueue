@@ -109,7 +109,7 @@ Element.prototype.getFormData = function (form) {
     }
     return uploadQueObj.getFormData(event, form);
 }
-Element.prototype.uploadQue = function () {
+Element.prototype.uploadQueue = function () {
     // check if name attr is set
     if (this.name == "") {
         console.error("Name attribute is not defined in element");
